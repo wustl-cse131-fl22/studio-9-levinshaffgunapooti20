@@ -1,26 +1,43 @@
 package studio9;
 
 import assignment7.Student;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import support.cse131.NotYetImplementedException;
+
 
 public class UniversityDatabase {
-	//TODO: Complete this class according to the studio instructions
+	private final Map<String,Student> map1;
 
+	public UniversityDatabase() { //constructor
+		map1 = new HashMap<String,Student>();
+	}
+	
 	public void addStudent(String accountName, Student student) {
-		// TODO
+		map1.put(accountName, student);
 	}
 
 	public int getStudentCount() {
-		// TODO
-		return 0;
+		return map1.size();
 	}
 
 	public String lookupFullName(String accountName) {
-		// TODO: Complete according to studio instructions
-		return null;
+		if(map1.get(accountName) == null) {
+			return null;
+		}
+		else {
+			return map1.get(accountName).getFullName();
+		}
+	
 	}
 
 	public double getTotalBearBucks() {
-		// TODO
-		return 0.0;
+		double sum = 0;
+		for(String key: map1.keySet()) {
+			sum+=  map1.get(key).getBearBucksBalance();
+		}
+		return sum;
 	}
 }
